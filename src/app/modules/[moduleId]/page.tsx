@@ -34,10 +34,10 @@ export default function ModuleReportPage() {
 
   if (!def) {
     return (
-      <div className="min-h-screen bg-stone-950 flex items-center justify-center text-center px-6">
+      <div className="min-h-screen bg-stone-50 flex items-center justify-center text-center px-6">
         <div>
-          <p className="text-stone-400 mb-4">Module not found.</p>
-          <Link href="/dashboard" className="text-white underline text-sm">Back to dashboard</Link>
+          <p className="text-stone-500 mb-4">Module not found.</p>
+          <Link href="/dashboard" className="text-stone-900 underline text-sm">Back to dashboard</Link>
         </div>
       </div>
     );
@@ -45,10 +45,10 @@ export default function ModuleReportPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-stone-950 flex flex-col items-center justify-center text-center px-6">
+      <div className="min-h-screen bg-stone-50 flex flex-col items-center justify-center text-center px-6">
         <div className="text-3xl mb-4">{def.icon}</div>
-        <h2 className="text-2xl font-bold text-white mb-3">{def.name}</h2>
-        <p className="text-stone-400 mb-8 max-w-sm">This module hasn't been generated yet.</p>
+        <h2 className="text-2xl font-bold text-stone-900 mb-3">{def.name}</h2>
+        <p className="text-stone-500 mb-8 max-w-sm">This module hasn't been generated yet.</p>
         <button
           onClick={() => router.push('/dashboard')}
           className="bg-amber-400 text-stone-950 px-6 py-3 rounded-full font-semibold hover:bg-amber-300 transition-colors"
@@ -61,41 +61,38 @@ export default function ModuleReportPage() {
 
   if (!report) {
     return (
-      <div className="min-h-screen bg-stone-950 flex items-center justify-center">
-        <div className="text-stone-500 text-sm">Loading...</div>
+      <div className="min-h-screen bg-stone-50 flex items-center justify-center">
+        <div className="text-stone-400 text-sm">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-stone-950 text-white">
+    <div className="min-h-screen bg-stone-50 text-stone-900">
       {/* Module header bar */}
-      <div className="border-b border-stone-800 px-6 py-4">
+      <div className="border-b border-stone-200 px-6 py-4">
         <div className="max-w-3xl mx-auto flex items-center justify-between">
-          <Link href="/dashboard" className="flex items-center gap-2 text-stone-400 hover:text-white transition-colors text-sm">
+          <Link href="/dashboard" className="flex items-center gap-2 text-stone-500 hover:text-stone-900 transition-colors text-sm">
             <ArrowLeft size={16} /> Dashboard
           </Link>
           <div className="flex items-center gap-2">
             <span className="text-lg">{def.icon}</span>
-            <span className="text-stone-400 text-sm">{def.name}</span>
+            <span className="text-stone-500 text-sm">{def.name}</span>
           </div>
         </div>
       </div>
 
-      {/* Reuse the ReportDisplay layout but with module title/subtitle */}
-      <div className="max-w-3xl mx-auto px-6 py-16 border-b border-stone-800">
-        <div className="text-xs font-mono text-stone-500 mb-4 uppercase tracking-widest">Module Report</div>
-        <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">{def.name}</h1>
-        <p className="text-stone-400 text-lg leading-relaxed max-w-xl">{def.description}</p>
+      <div className="max-w-3xl mx-auto px-6 py-16 border-b border-stone-200">
+        <div className="text-xs font-mono text-stone-400 mb-4 uppercase tracking-widest">Module Report</div>
+        <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight text-stone-900">{def.name}</h1>
+        <p className="text-stone-500 text-lg leading-relaxed max-w-xl">{def.description}</p>
       </div>
 
-      {/* Report sections — reuse parse logic inline */}
       <ModuleReportBody content={report.content} />
 
-      {/* Footer */}
-      <div className="border-t border-stone-800 px-6 py-12">
+      <div className="border-t border-stone-200 px-6 py-12">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-stone-500 text-sm mb-6">Explore another lens</p>
+          <p className="text-stone-400 text-sm mb-6">Explore another lens</p>
           <Link
             href="/dashboard"
             className="inline-flex items-center gap-2 bg-amber-400 text-stone-950 px-6 py-3 rounded-full text-sm font-semibold hover:bg-amber-300 transition-colors"
@@ -123,32 +120,30 @@ function ModuleReportBody({ content }: { content: string }) {
 
   return (
     <>
-      {/* TOC */}
-      <div className="max-w-3xl mx-auto px-6 py-10 border-b border-stone-800">
-        <p className="text-xs font-mono text-stone-500 mb-4 uppercase tracking-widest">Contents</p>
+      <div className="max-w-3xl mx-auto px-6 py-10 border-b border-stone-200">
+        <p className="text-xs font-mono text-stone-400 mb-4 uppercase tracking-widest">Contents</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {sections.map((s, i) => (
-            <a key={i} href={`#ms-${i}`} className="text-stone-400 hover:text-white text-sm transition-colors py-1">
-              <span className="text-stone-700 font-mono mr-2">{String(i + 1).padStart(2, '0')}</span>
+            <a key={i} href={`#ms-${i}`} className="text-stone-500 hover:text-stone-900 text-sm transition-colors py-1">
+              <span className="text-stone-300 font-mono mr-2">{String(i + 1).padStart(2, '0')}</span>
               {s.title}
             </a>
           ))}
         </div>
       </div>
 
-      {/* Sections */}
       <div className="max-w-3xl mx-auto px-6 py-10 space-y-20 pb-16">
         {sections.map((s, i) => (
           <div key={i} id={`ms-${i}`} className="scroll-mt-10">
             <div className="mb-8">
-              <div className="text-xs font-mono text-stone-600 mb-2 uppercase tracking-widest">
+              <div className="text-xs font-mono text-stone-300 mb-2 uppercase tracking-widest">
                 {String(i + 1).padStart(2, '0')}
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white">{s.title}</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold text-stone-900">{s.title}</h2>
             </div>
             <div className="space-y-6">
               {s.body.trim().split('\n\n').filter(Boolean).map((para, j) => (
-                <p key={j} className="text-stone-300 leading-relaxed text-base sm:text-lg">
+                <p key={j} className="text-stone-600 leading-relaxed text-base sm:text-lg">
                   {para.trim()}
                 </p>
               ))}

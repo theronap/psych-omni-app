@@ -30,7 +30,6 @@ export default function DashboardPage() {
       setStoredProfile(parsed);
       setHasProfile(true);
 
-      // Load module statuses from localStorage
       const savedStatuses = localStorage.getItem('module_statuses');
       if (savedStatuses) {
         setModuleStatuses(JSON.parse(savedStatuses));
@@ -75,7 +74,6 @@ export default function DashboardPage() {
         fullText += decoder.decode(value, { stream: true });
       }
 
-      // Strip META tag
       const reportContent = fullText.replace(/\n\n<!--META:[\s\S]+?:META-->/, '');
       localStorage.setItem(`module_${moduleId}`, JSON.stringify({
         moduleId,
@@ -90,7 +88,6 @@ export default function DashboardPage() {
   }
 
   function getOpenEnded(): Record<string, string> {
-    // Try to pull from the stored core report
     if (!storedProfile?.reportId) return {};
     const raw = localStorage.getItem(`report_${storedProfile.reportId}`);
     if (!raw) return {};
@@ -108,17 +105,17 @@ export default function DashboardPage() {
 
   if (hasProfile === null) {
     return (
-      <div className="min-h-screen bg-stone-950 flex items-center justify-center">
-        <div className="text-stone-500 text-sm">Loading...</div>
+      <div className="min-h-screen bg-stone-50 flex items-center justify-center">
+        <div className="text-stone-400 text-sm">Loading...</div>
       </div>
     );
   }
 
   if (!hasProfile || !storedProfile) {
     return (
-      <div className="min-h-screen bg-stone-950 flex flex-col items-center justify-center text-center px-6">
-        <h2 className="text-2xl font-bold text-white mb-3">No profile found.</h2>
-        <p className="text-stone-400 mb-8 max-w-sm">
+      <div className="min-h-screen bg-stone-50 flex flex-col items-center justify-center text-center px-6">
+        <h2 className="text-2xl font-bold text-stone-900 mb-3">No profile found.</h2>
+        <p className="text-stone-500 mb-8 max-w-sm">
           Complete the intake analysis first to unlock your personalized modules.
         </p>
         <Link
@@ -134,24 +131,24 @@ export default function DashboardPage() {
   const completedCount = MODULE_ORDER.filter(id => moduleStatuses[id] === 'done').length;
 
   return (
-    <div className="min-h-screen bg-stone-950 text-white">
+    <div className="min-h-screen bg-stone-50 text-stone-900">
       {/* Header */}
-      <div className="border-b border-stone-800 px-6 py-4">
+      <div className="border-b border-stone-200 px-6 py-4">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <Link href={`/report?id=${storedProfile.reportId}`} className="flex items-center gap-2 text-stone-400 hover:text-white transition-colors text-sm">
+          <Link href={`/report?id=${storedProfile.reportId}`} className="flex items-center gap-2 text-stone-500 hover:text-stone-900 transition-colors text-sm">
             <ArrowLeft size={16} /> Your Report
           </Link>
-          <div className="text-xs text-stone-500 font-mono">
+          <div className="text-xs text-stone-400 font-mono">
             {completedCount} / {MODULE_ORDER.length} modules unlocked
           </div>
         </div>
       </div>
 
       {/* Hero */}
-      <div className="max-w-5xl mx-auto px-6 py-16 border-b border-stone-800">
-        <div className="text-xs font-mono text-stone-500 mb-4 uppercase tracking-widest">Your Dashboard</div>
-        <h1 className="text-4xl font-bold mb-4">Twelve more lenses.</h1>
-        <p className="text-stone-400 max-w-xl text-lg">
+      <div className="max-w-5xl mx-auto px-6 py-16 border-b border-stone-200">
+        <div className="text-xs font-mono text-stone-400 mb-4 uppercase tracking-widest">Your Dashboard</div>
+        <h1 className="text-4xl font-bold mb-4 text-stone-900">Twelve more lenses.</h1>
+        <p className="text-stone-500 max-w-xl text-lg">
           Each module runs the same profile data through a different analytical frame. No new questions needed — just a new angle on who you are.
         </p>
       </div>
@@ -193,8 +190,8 @@ function ModuleCard({ def, status, onGenerate, onView }: ModuleCardProps) {
 
   return (
     <div className={`
-      rounded-2xl border p-6 flex flex-col gap-4 transition-all
-      ${isDone ? 'border-stone-600 bg-stone-900' : 'border-stone-800 bg-stone-900/50'}
+      rounded-2xl border p-6 flex flex-col gap-4 transition-all bg-white
+      ${isDone ? 'border-stone-300' : 'border-stone-200'}
     `}>
       <div className="flex items-start justify-between">
         <span className="text-2xl">{def.icon}</span>
@@ -202,23 +199,23 @@ function ModuleCard({ def, status, onGenerate, onView }: ModuleCardProps) {
       </div>
 
       <div>
-        <h3 className="text-white font-semibold mb-1">{def.name}</h3>
-        <p className="text-stone-500 text-sm leading-relaxed">{def.tagline}</p>
+        <h3 className="text-stone-900 font-semibold mb-1">{def.name}</h3>
+        <p className="text-stone-400 text-sm leading-relaxed">{def.tagline}</p>
       </div>
 
       <div className="mt-auto">
         {isError && (
-          <p className="text-red-400 text-xs mb-2">Generation failed — try again</p>
+          <p className="text-red-500 text-xs mb-2">Generation failed — try again</p>
         )}
         {isDone ? (
           <button
             onClick={onView}
-            className="w-full border border-stone-600 text-stone-300 hover:text-white hover:border-stone-400 rounded-xl py-2 text-sm transition-colors"
+            className="w-full border border-stone-300 text-stone-600 hover:text-stone-900 hover:border-stone-500 rounded-xl py-2 text-sm transition-colors"
           >
             View Report
           </button>
         ) : isGenerating ? (
-          <button disabled className="w-full bg-stone-800 text-stone-500 rounded-xl py-2 text-sm flex items-center justify-center gap-2">
+          <button disabled className="w-full bg-stone-100 text-stone-400 rounded-xl py-2 text-sm flex items-center justify-center gap-2">
             <Loader2 size={14} className="animate-spin" /> Generating...
           </button>
         ) : (

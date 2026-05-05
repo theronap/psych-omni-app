@@ -85,7 +85,6 @@ export default function IntakePage() {
         dbReportId,
         createdAt: new Date().toISOString(),
       }));
-      // Also store as current profile for dashboard/modules access
       if (profile) {
         localStorage.setItem('current_profile', JSON.stringify({ profile, profileId, sessionId, reportId }));
       }
@@ -98,10 +97,10 @@ export default function IntakePage() {
 
   if (submitting) {
     return (
-      <div className="min-h-screen bg-stone-950 flex flex-col items-center justify-center text-center px-6">
-        <Loader2 className="animate-spin text-white mb-6" size={40} />
-        <h2 className="text-2xl font-semibold text-white mb-3">Analyzing your profile...</h2>
-        <p className="text-stone-400 max-w-sm">
+      <div className="min-h-screen bg-stone-50 flex flex-col items-center justify-center text-center px-6">
+        <Loader2 className="animate-spin text-stone-900 mb-6" size={40} />
+        <h2 className="text-2xl font-semibold text-stone-900 mb-3">Analyzing your profile...</h2>
+        <p className="text-stone-500 max-w-sm">
           Building your psychological analysis. This takes about 60 seconds.
         </p>
       </div>
@@ -109,8 +108,8 @@ export default function IntakePage() {
   }
 
   return (
-    <div className="min-h-screen bg-stone-950 text-white">
-      <div className="fixed top-0 left-0 right-0 z-10 bg-stone-950/90 backdrop-blur border-b border-stone-900 px-6 py-4">
+    <div className="min-h-screen bg-stone-50 text-stone-900">
+      <div className="fixed top-0 left-0 right-0 z-10 bg-stone-50/90 backdrop-blur border-b border-stone-200 px-6 py-4">
         <div className="max-w-2xl mx-auto">
           <ProgressBar
             current={currentSection + 1}
@@ -122,28 +121,28 @@ export default function IntakePage() {
 
       <div className="max-w-2xl mx-auto px-6 pt-28 pb-40">
         <div className="mb-12">
-          <div className="text-xs font-mono text-stone-500 mb-3 uppercase tracking-widest">
+          <div className="text-xs font-mono text-stone-400 mb-3 uppercase tracking-widest">
             Section {currentSection + 1} of {sections.length}
           </div>
-          <h1 className="text-3xl font-bold text-white mb-3">{section.title}</h1>
-          <p className="text-stone-400 leading-relaxed">{section.subtitle}</p>
+          <h1 className="text-3xl font-bold text-stone-900 mb-3">{section.title}</h1>
+          <p className="text-stone-500 leading-relaxed">{section.subtitle}</p>
         </div>
 
         <SectionView section={section} answers={answers} onAnswer={handleAnswer} />
 
         {error && (
-          <div className="mt-8 p-4 bg-red-950 border border-red-800 rounded-xl text-red-300 text-sm">
+          <div className="mt-8 p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
             {error}
           </div>
         )}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 bg-stone-950/90 backdrop-blur border-t border-stone-900 px-6 py-5">
+      <div className="fixed bottom-0 left-0 right-0 bg-stone-50/90 backdrop-blur border-t border-stone-200 px-6 py-5">
         <div className="max-w-2xl mx-auto flex justify-between items-center">
           <button
             onClick={handleBack}
             disabled={currentSection === 0}
-            className="flex items-center gap-2 text-stone-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-sm"
+            className="flex items-center gap-2 text-stone-400 hover:text-stone-900 disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-sm"
           >
             <ArrowLeft size={16} /> Back
           </button>

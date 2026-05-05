@@ -29,7 +29,6 @@ function ReportContent() {
     try {
       const parsed = JSON.parse(stored);
       setReport(parsed);
-      // Show email modal after 3s if email not already saved
       const emailAlreadySaved = localStorage.getItem('email_saved');
       if (!emailAlreadySaved) {
         setTimeout(() => setShowEmailModal(true), 3000);
@@ -51,10 +50,10 @@ function ReportContent() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-stone-950 flex items-center justify-center text-center px-6">
+      <div className="min-h-screen bg-stone-50 flex items-center justify-center text-center px-6">
         <div>
-          <p className="text-stone-400 mb-4">Report not found. It may have been cleared from your browser.</p>
-          <a href="/intake" className="text-white underline text-sm">Take the analysis again</a>
+          <p className="text-stone-500 mb-4">Report not found. It may have been cleared from your browser.</p>
+          <a href="/intake" className="text-stone-900 underline text-sm">Take the analysis again</a>
         </div>
       </div>
     );
@@ -62,8 +61,8 @@ function ReportContent() {
 
   if (!report) {
     return (
-      <div className="min-h-screen bg-stone-950 flex items-center justify-center">
-        <div className="text-stone-500 text-sm">Loading...</div>
+      <div className="min-h-screen bg-stone-50 flex items-center justify-center">
+        <div className="text-stone-400 text-sm">Loading...</div>
       </div>
     );
   }
@@ -86,8 +85,8 @@ function ReportContent() {
 export default function ReportPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-stone-950 flex items-center justify-center">
-        <div className="text-stone-500 text-sm">Loading...</div>
+      <div className="min-h-screen bg-stone-50 flex items-center justify-center">
+        <div className="text-stone-400 text-sm">Loading...</div>
       </div>
     }>
       <ReportContent />

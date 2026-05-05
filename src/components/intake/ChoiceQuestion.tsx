@@ -12,7 +12,7 @@ interface Props {
 export function ChoiceQuestion({ question, value, onChange }: Props) {
   return (
     <div className="space-y-6">
-      <p className="text-xl text-white leading-relaxed">{question.text}</p>
+      <p className="text-xl text-stone-900 leading-relaxed">{question.text}</p>
       <div className="space-y-3">
         {question.options?.map(opt => (
           <button
@@ -21,8 +21,8 @@ export function ChoiceQuestion({ question, value, onChange }: Props) {
             className={clsx(
               'w-full text-left p-4 rounded-xl border transition-all text-sm leading-relaxed',
               value === opt.value
-                ? 'border-amber-400 bg-amber-400/10 text-amber-100'
-                : 'border-stone-700 text-stone-300 hover:border-stone-500 hover:text-stone-100'
+                ? 'border-amber-400 bg-amber-50 text-stone-900'
+                : 'border-stone-200 text-stone-600 hover:border-stone-400 hover:text-stone-900 bg-white'
             )}
           >
             {opt.label}
