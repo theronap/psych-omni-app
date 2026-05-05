@@ -148,7 +148,7 @@ export default function IntakePage() {
           </button>
           <button
             onClick={handleNext}
-            className="flex items-center gap-3 bg-amber-400 text-stone-950 px-6 py-3 rounded-full font-semibold text-sm hover:bg-amber-300 transition-colors"
+            className="flex items-center gap-3 bg-accent text-white px-6 py-3 rounded-full font-semibold text-sm hover:bg-accent-hover transition-colors"
           >
             {isLast ? 'Generate My Report' : 'Continue'}
             <ArrowRight size={16} />

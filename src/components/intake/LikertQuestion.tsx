@@ -25,9 +25,9 @@ export function LikertQuestion({ question, value, onChange }: Props) {
               key={n}
               onClick={() => onChange(n)}
               className={clsx(
-                'flex-1 h-12 rounded-lg border text-sm font-medium transition-all',
+                'flex-1 h-11 rounded-full border text-sm font-medium transition-all',
                 value === n
-                  ? 'bg-amber-400 text-stone-950 border-amber-400'
+                  ? 'bg-accent text-white border-accent shadow-sm'
                   : 'border-stone-300 text-stone-500 hover:border-stone-500 hover:text-stone-900 bg-white'
               )}
             >

@@ -51,14 +51,14 @@ export default function EmailCaptureModal({ onSaved, onSkip }: Props) {
             value={email}
             onChange={e => setEmail(e.target.value)}
             placeholder="your@email.com"
-            className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-400 transition-colors"
+            className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-stone-900 placeholder-stone-400 focus:outline-none focus:border-accent transition-colors"
             autoFocus
           />
           {errorMsg && <p className="text-red-500 text-sm">{errorMsg}</p>}
           <button
             type="submit"
             disabled={status === 'saving'}
-            className="w-full bg-amber-400 text-stone-950 font-semibold rounded-xl py-3 hover:bg-amber-300 transition-colors disabled:opacity-50"
+            className="w-full bg-accent text-white font-semibold rounded-xl py-3 hover:bg-accent-hover transition-colors disabled:opacity-50"
           >
             {status === 'saving' ? 'Saving...' : 'Save My Report'}
           </button>

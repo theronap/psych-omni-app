@@ -50,7 +50,7 @@ export function ReportDisplay({ content, createdAt, onGoToDashboard, emailSaved 
 
       <div className="max-w-3xl mx-auto px-6 py-16 border-b border-stone-200">
         <div className="text-xs font-mono text-stone-400 mb-4 uppercase tracking-widest">Your Analysis</div>
-        <h1 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight text-stone-900">Deep Personality Report</h1>
+        <h1 className="font-serif text-4xl sm:text-5xl mb-6 leading-tight text-stone-900">Deep Personality Report</h1>
         <p className="text-stone-500 text-lg leading-relaxed max-w-xl">
           A comprehensive psychological profile built from your responses. This is not a personality type — it is a map of how you actually work.
         </p>
@@ -75,7 +75,7 @@ export function ReportDisplay({ content, createdAt, onGoToDashboard, emailSaved 
               <div className="text-xs font-mono text-stone-300 mb-2 uppercase tracking-widest">
                 {String(i + 1).padStart(2, '0')}
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-stone-900">{s.title}</h2>
+              <h2 className="font-serif text-2xl sm:text-3xl text-stone-900">{s.title}</h2>
             </div>
             <div className="space-y-6">
               {s.body.trim().split('\n\n').filter(Boolean).map((para, j) => (
@@ -91,21 +91,21 @@ export function ReportDisplay({ content, createdAt, onGoToDashboard, emailSaved 
       <div className="border-t border-stone-200 px-6 py-16">
         <div className="max-w-3xl mx-auto text-center">
           <div className="text-xs font-mono text-stone-400 mb-4 uppercase tracking-widest">What's Next</div>
-          <h3 className="text-2xl font-bold text-stone-900 mb-3">12 more lenses on who you are.</h3>
+          <h3 className="font-serif text-3xl text-stone-900 mb-3">12 more lenses on <span className="italic text-stone-400">who you are.</span></h3>
           <p className="text-stone-500 mb-8 max-w-md mx-auto">
             Your Shadow Self, Cognitive Bias Scanner, Emotional Trigger Blueprint, and 9 more — all generated instantly from the same profile.
           </p>
           {onGoToDashboard ? (
             <button
               onClick={onGoToDashboard}
-              className="inline-flex items-center gap-2 bg-amber-400 text-stone-950 px-8 py-4 rounded-full font-semibold hover:bg-amber-300 transition-colors"
+              className="inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-full font-semibold hover:bg-accent-hover transition-colors"
             >
               Explore Your Modules →
             </button>
           ) : (
             <Link
               href="/dashboard"
-              className="inline-flex items-center gap-2 bg-amber-400 text-stone-950 px-8 py-4 rounded-full font-semibold hover:bg-amber-300 transition-colors"
+              className="inline-flex items-center gap-2 bg-accent text-white px-8 py-4 rounded-full font-semibold hover:bg-accent-hover transition-colors"
             >
               Explore Your Modules →
             </Link>

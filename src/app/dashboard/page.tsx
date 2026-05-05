@@ -120,7 +120,7 @@ export default function DashboardPage() {
         </p>
         <Link
           href="/intake"
-          className="bg-amber-400 text-stone-950 px-6 py-3 rounded-full font-semibold hover:bg-amber-300 transition-colors"
+          className="bg-accent text-white px-6 py-3 rounded-full font-semibold hover:bg-accent-hover transition-colors"
         >
           Start Your Analysis
         </Link>
@@ -195,7 +195,7 @@ function ModuleCard({ def, status, onGenerate, onView }: ModuleCardProps) {
     `}>
       <div className="flex items-start justify-between">
         <span className="text-2xl">{def.icon}</span>
-        {isDone && <CheckCircle size={16} className="text-amber-500 mt-1" />}
+        {isDone && <CheckCircle size={16} className="text-accent mt-1" />}
       </div>
 
       <div>
@@ -221,7 +221,7 @@ function ModuleCard({ def, status, onGenerate, onView }: ModuleCardProps) {
         ) : (
           <button
             onClick={onGenerate}
-            className="w-full bg-amber-400 text-stone-950 hover:bg-amber-300 rounded-xl py-2 text-sm font-semibold transition-colors"
+            className="w-full bg-accent text-white hover:bg-accent-hover rounded-xl py-2 text-sm font-semibold transition-colors"
           >
             Generate {def.estimatedTime}
           </button>

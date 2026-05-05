@@ -51,7 +51,7 @@ export default function ModuleReportPage() {
         <p className="text-stone-500 mb-8 max-w-sm">This module hasn't been generated yet.</p>
         <button
           onClick={() => router.push('/dashboard')}
-          className="bg-amber-400 text-stone-950 px-6 py-3 rounded-full font-semibold hover:bg-amber-300 transition-colors"
+          className="bg-accent text-white px-6 py-3 rounded-full font-semibold hover:bg-accent-hover transition-colors"
         >
           Go to Dashboard
         </button>
@@ -95,7 +95,7 @@ export default function ModuleReportPage() {
           <p className="text-stone-400 text-sm mb-6">Explore another lens</p>
           <Link
             href="/dashboard"
-            className="inline-flex items-center gap-2 bg-amber-400 text-stone-950 px-6 py-3 rounded-full text-sm font-semibold hover:bg-amber-300 transition-colors"
+            className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-accent-hover transition-colors"
           >
             Back to Dashboard
           </Link>

@@ -56,7 +56,7 @@ export function RankingQuestion({ question, value, onChange }: Props) {
             onDragEnd={() => { setDragging(null); setDragOver(null); }}
             className={clsx(
               'flex items-center gap-3 p-3 rounded-xl border cursor-grab active:cursor-grabbing transition-all select-none',
-              dragOver === i ? 'border-amber-400 bg-amber-50' : 'border-stone-200 bg-white'
+              dragOver === i ? 'border-accent bg-accent-light' : 'border-stone-200 bg-white'
             )}
           >
             <span className="text-stone-400 text-sm font-mono w-5 shrink-0">{i + 1}</span>

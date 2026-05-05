@@ -6,7 +6,7 @@ export default function Home() {
     <div className="min-h-screen bg-stone-50 text-stone-900">
       <nav className="border-b border-stone-200 px-6 py-5">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <span className="font-bold text-lg tracking-tight">Psych</span>
+          <span className="font-serif text-2xl text-stone-900">Psych</span>
           <Link href="/intake" className="text-sm text-stone-500 hover:text-stone-900 transition-colors">
             Start analysis →
           </Link>
@@ -18,9 +18,9 @@ export default function Home() {
           <div className="text-xs font-mono text-stone-400 mb-6 uppercase tracking-widest">
             Deep Personality Analysis
           </div>
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] mb-8">
+          <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl leading-[1.1] mb-8 text-stone-900">
             Understand yourself<br />
-            <span className="text-stone-400">like never before.</span>
+            <span className="text-stone-400 italic">like never before.</span>
           </h1>
           <p className="text-xl text-stone-500 leading-relaxed mb-10 max-w-xl">
             A 40-minute psychological intake — built on 15 validated frameworks — generates a comprehensive report that maps who you actually are, not who you think you are.
@@ -28,7 +28,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
             <Link
               href="/intake"
-              className="inline-flex items-center gap-3 bg-amber-400 text-stone-950 px-8 py-4 rounded-full font-semibold hover:bg-amber-300 transition-colors text-base"
+              className="inline-flex items-center gap-3 bg-accent text-white px-8 py-4 rounded-full font-semibold hover:bg-accent-hover transition-all text-base shadow-sm hover:shadow-md hover:-translate-y-0.5"
             >
               Take the Analysis <ArrowRight size={18} />
             </Link>
@@ -47,8 +47,8 @@ export default function Home() {
               { icon: Target, title: 'Your Kryptonite', desc: 'The specific patterns that cost you — named honestly and tied to your actual data.' },
               { icon: Eye, title: 'Your Blind Spots', desc: 'What others see about you that you cannot see yourself.' },
             ].map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="p-6 border border-stone-200 rounded-2xl bg-white">
-                <Icon size={24} className="text-amber-500 mb-4" />
+              <div key={title} className="p-6 border border-stone-200 rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow">
+                <Icon size={24} className="text-accent mb-4" />
                 <h3 className="font-semibold text-stone-900 mb-2">{title}</h3>
                 <p className="text-stone-500 text-sm leading-relaxed">{desc}</p>
               </div>
@@ -96,15 +96,15 @@ export default function Home() {
 
       <section className="border-t border-stone-200 py-24 px-6">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-stone-900">
-            Tell us a little about yourself.
+          <h2 className="font-serif text-4xl sm:text-5xl mb-6 text-stone-900 leading-tight">
+            Tell us a little <span className="italic text-stone-400">about yourself.</span>
           </h2>
           <p className="text-stone-500 text-lg mb-10 max-w-lg mx-auto">
             We will tell you something unsettlingly accurate.
           </p>
           <Link
             href="/intake"
-            className="inline-flex items-center gap-3 bg-amber-400 text-stone-950 px-8 py-4 rounded-full font-semibold hover:bg-amber-300 transition-colors text-base"
+            className="inline-flex items-center gap-3 bg-accent text-white px-8 py-4 rounded-full font-semibold hover:bg-accent-hover transition-colors text-base"
           >
             Start Your Analysis <ArrowRight size={18} />
           </Link>
