@@ -60,9 +60,18 @@ export default function IntakePage() {
 
       const metaMatch = fullText.match(/<!--META:([\s\S]+?):META-->/);
       let profile = null;
+      let dbReportId: string | null = null;
+      let profileId: string | null = null;
+      let sessionId: string | null = null;
       let reportContent = fullText;
       if (metaMatch) {
-        try { profile = JSON.parse(metaMatch[1]).__profile__; } catch { /* ignore */ }
+        try {
+          const meta = JSON.parse(metaMatch[1]);
+          profile = meta.__profile__ ?? null;
+          dbReportId = meta.__reportId__ !== 'local' ? meta.__reportId__ : null;
+          profileId = meta.__profileId__ !== 'local' ? meta.__profileId__ : null;
+          sessionId = meta.__sessionId__ !== 'local' ? meta.__sessionId__ : null;
+        } catch { /* ignore */ }
         reportContent = fullText.replace(/\n\n<!--META:[\s\S]+?:META-->/, '');
       }
 
@@ -71,8 +80,15 @@ export default function IntakePage() {
         id: reportId,
         content: reportContent,
         profile,
+        profileId,
+        sessionId,
+        dbReportId,
         createdAt: new Date().toISOString(),
       }));
+      // Also store as current profile for dashboard/modules access
+      if (profile) {
+        localStorage.setItem('current_profile', JSON.stringify({ profile, profileId, sessionId, reportId }));
+      }
       router.push(`/report?id=${reportId}`);
     } catch {
       setError('Something went wrong generating your report. Please try again.');

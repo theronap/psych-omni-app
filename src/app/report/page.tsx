@@ -1,37 +1,60 @@
 'use client';
 
 import { useEffect, useState, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { ReportDisplay } from '@/components/report/ReportDisplay';
+import EmailCaptureModal from '@/components/EmailCaptureModal';
 
 interface StoredReport {
   content: string;
   createdAt: string;
+  profile?: unknown;
+  profileId?: string;
+  sessionId?: string;
 }
 
 function ReportContent() {
   const params = useSearchParams();
+  const router = useRouter();
   const id = params.get('id');
   const [report, setReport] = useState<StoredReport | null>(null);
   const [error, setError] = useState(false);
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [emailSaved, setEmailSaved] = useState(false);
 
   useEffect(() => {
     if (!id) { setError(true); return; }
     const stored = localStorage.getItem(`report_${id}`);
     if (!stored) { setError(true); return; }
     try {
-      setReport(JSON.parse(stored));
+      const parsed = JSON.parse(stored);
+      setReport(parsed);
+      // Show email modal after 3s if email not already saved
+      const emailAlreadySaved = localStorage.getItem('email_saved');
+      if (!emailAlreadySaved) {
+        setTimeout(() => setShowEmailModal(true), 3000);
+      }
     } catch {
       setError(true);
     }
   }, [id]);
 
+  function handleEmailSaved(email: string) {
+    setEmailSaved(true);
+    setShowEmailModal(false);
+    localStorage.setItem('email_saved', email);
+  }
+
+  function handleEmailSkip() {
+    setShowEmailModal(false);
+  }
+
   if (error) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center text-center px-6">
         <div>
-          <p className="text-neutral-400 mb-4">Report not found.</p>
-          <a href="/intake" className="text-white underline text-sm">Take the analysis</a>
+          <p className="text-neutral-400 mb-4">Report not found. It may have been cleared from your browser.</p>
+          <a href="/intake" className="text-white underline text-sm">Take the analysis again</a>
         </div>
       </div>
     );
@@ -45,7 +68,19 @@ function ReportContent() {
     );
   }
 
-  return <ReportDisplay content={report.content} createdAt={report.createdAt} />;
+  return (
+    <>
+      {showEmailModal && (
+        <EmailCaptureModal onSaved={handleEmailSaved} onSkip={handleEmailSkip} />
+      )}
+      <ReportDisplay
+        content={report.content}
+        createdAt={report.createdAt}
+        onGoToDashboard={() => router.push('/dashboard')}
+        emailSaved={emailSaved}
+      />
+    </>
+  );
 }
 
 export default function ReportPage() {

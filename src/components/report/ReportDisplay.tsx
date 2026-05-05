@@ -7,6 +7,8 @@ import { ArrowLeft } from 'lucide-react';
 interface Props {
   content: string;
   createdAt: string;
+  onGoToDashboard?: () => void;
+  emailSaved?: boolean;
 }
 
 interface ParsedSection {
@@ -29,7 +31,7 @@ function parseReport(content: string): ParsedSection[] {
   return sections;
 }
 
-export function ReportDisplay({ content, createdAt }: Props) {
+export function ReportDisplay({ content, createdAt, onGoToDashboard, emailSaved }: Props) {
   const sections = useMemo(() => parseReport(content), [content]);
   const date = new Date(createdAt).toLocaleDateString('en-US', {
     year: 'numeric', month: 'long', day: 'numeric',
@@ -86,15 +88,31 @@ export function ReportDisplay({ content, createdAt }: Props) {
         ))}
       </div>
 
-      <div className="border-t border-neutral-800 px-6 py-12">
+      <div className="border-t border-neutral-800 px-6 py-16">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-neutral-600 text-sm mb-6">Want to go deeper?</p>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full text-sm font-semibold hover:bg-neutral-100 transition-colors"
-          >
-            Explore add-on modules
-          </Link>
+          <div className="text-xs font-mono text-neutral-500 mb-4 uppercase tracking-widest">What's Next</div>
+          <h3 className="text-2xl font-bold text-white mb-3">12 more lenses on who you are.</h3>
+          <p className="text-neutral-400 mb-8 max-w-md mx-auto">
+            Your Shadow Self, Cognitive Bias Scanner, Emotional Trigger Blueprint, and 9 more — all generated instantly from the same profile.
+          </p>
+          {onGoToDashboard ? (
+            <button
+              onClick={onGoToDashboard}
+              className="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-neutral-100 transition-colors"
+            >
+              Explore Your Modules →
+            </button>
+          ) : (
+            <Link
+              href="/dashboard"
+              className="inline-flex items-center gap-2 bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-neutral-100 transition-colors"
+            >
+              Explore Your Modules →
+            </Link>
+          )}
+          {emailSaved && (
+            <p className="text-neutral-500 text-sm mt-4">Your report is saved. You can come back to it anytime.</p>
+          )}
         </div>
       </div>
     </div>
