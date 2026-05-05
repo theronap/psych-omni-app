@@ -43,7 +43,7 @@ export function RankingQuestion({ question, value, onChange }: Props) {
     <div className="space-y-6">
       <div>
         <p className="text-xl text-white leading-relaxed">{question.text}</p>
-        <p className="text-neutral-400 text-sm mt-2">Drag to reorder — most important at the top.</p>
+        <p className="text-stone-400 text-sm mt-2">Drag to reorder — most important at the top.</p>
       </div>
       <div className="space-y-2">
         {items.map((item, i) => (
@@ -56,12 +56,12 @@ export function RankingQuestion({ question, value, onChange }: Props) {
             onDragEnd={() => { setDragging(null); setDragOver(null); }}
             className={clsx(
               'flex items-center gap-3 p-3 rounded-xl border cursor-grab active:cursor-grabbing transition-all select-none',
-              dragOver === i ? 'border-white bg-white/10' : 'border-neutral-700 bg-neutral-900'
+              dragOver === i ? 'border-amber-400 bg-amber-400/10' : 'border-stone-700 bg-stone-900'
             )}
           >
-            <span className="text-neutral-500 text-sm font-mono w-5 shrink-0">{i + 1}</span>
-            <GripVertical size={16} className="text-neutral-600 shrink-0" />
-            <span className="text-neutral-200 text-sm">{item}</span>
+            <span className="text-stone-500 text-sm font-mono w-5 shrink-0">{i + 1}</span>
+            <GripVertical size={16} className="text-stone-600 shrink-0" />
+            <span className="text-stone-200 text-sm">{item}</span>
           </div>
         ))}
       </div>

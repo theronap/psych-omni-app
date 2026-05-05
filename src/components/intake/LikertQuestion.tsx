@@ -15,7 +15,7 @@ export function LikertQuestion({ question, value, onChange }: Props) {
       <div>
         <p className="text-xl text-white leading-relaxed">{question.text}</p>
         {question.subtext && (
-          <p className="text-neutral-400 mt-2 text-sm">{question.subtext}</p>
+          <p className="text-stone-400 mt-2 text-sm">{question.subtext}</p>
         )}
       </div>
       <div className="space-y-2">
@@ -27,15 +27,15 @@ export function LikertQuestion({ question, value, onChange }: Props) {
               className={clsx(
                 'flex-1 h-12 rounded-lg border text-sm font-medium transition-all',
                 value === n
-                  ? 'bg-white text-black border-white'
-                  : 'border-neutral-700 text-neutral-400 hover:border-neutral-500 hover:text-white'
+                  ? 'bg-amber-400 text-stone-950 border-amber-400'
+                  : 'border-stone-700 text-stone-400 hover:border-stone-500 hover:text-stone-100'
               )}
             >
               {n}
             </button>
           ))}
         </div>
-        <div className="flex justify-between text-xs text-neutral-500 px-1">
+        <div className="flex justify-between text-xs text-stone-500 px-1">
           <span>{question.minLabel}</span>
           <span>{question.maxLabel}</span>
         </div>

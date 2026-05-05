@@ -21,8 +21,8 @@ export function ChoiceQuestion({ question, value, onChange }: Props) {
             className={clsx(
               'w-full text-left p-4 rounded-xl border transition-all text-sm leading-relaxed',
               value === opt.value
-                ? 'border-white bg-white/10 text-white'
-                : 'border-neutral-700 text-neutral-300 hover:border-neutral-500 hover:text-white'
+                ? 'border-amber-400 bg-amber-400/10 text-amber-100'
+                : 'border-stone-700 text-stone-300 hover:border-stone-500 hover:text-stone-100'
             )}
           >
             {opt.label}

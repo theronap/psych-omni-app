@@ -35,12 +35,12 @@ export default function EmailCaptureModal({ onSaved, onSkip }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-neutral-900 border border-neutral-700 rounded-2xl max-w-md w-full p-8">
+    <div className="fixed inset-0 bg-stone-950/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-stone-900 border border-stone-700 rounded-2xl max-w-md w-full p-8">
         <div className="mb-6">
-          <div className="text-xs uppercase tracking-widest text-neutral-500 mb-2">Save Your Report</div>
+          <div className="text-xs uppercase tracking-widest text-stone-500 mb-2">Save Your Report</div>
           <h2 className="text-2xl font-bold text-white mb-3">Don't lose this.</h2>
-          <p className="text-neutral-400 leading-relaxed">
+          <p className="text-stone-400 leading-relaxed">
             Your report exists on this device right now. Enter your email and we'll make sure you can access it from anywhere — and notify you when your 12 add-on modules are ready.
           </p>
         </div>
@@ -51,14 +51,14 @@ export default function EmailCaptureModal({ onSaved, onSkip }: Props) {
             value={email}
             onChange={e => setEmail(e.target.value)}
             placeholder="your@email.com"
-            className="w-full bg-neutral-800 border border-neutral-600 rounded-xl px-4 py-3 text-white placeholder-neutral-500 focus:outline-none focus:border-white transition-colors"
+            className="w-full bg-stone-800 border border-stone-600 rounded-xl px-4 py-3 text-stone-50 placeholder-stone-500 focus:outline-none focus:border-amber-400 transition-colors"
             autoFocus
           />
           {errorMsg && <p className="text-red-400 text-sm">{errorMsg}</p>}
           <button
             type="submit"
             disabled={status === 'saving'}
-            className="w-full bg-white text-black font-semibold rounded-xl py-3 hover:bg-neutral-200 transition-colors disabled:opacity-50"
+            className="w-full bg-amber-400 text-stone-950 font-semibold rounded-xl py-3 hover:bg-amber-300 transition-colors disabled:opacity-50"
           >
             {status === 'saving' ? 'Saving...' : 'Save My Report'}
           </button>
@@ -66,7 +66,7 @@ export default function EmailCaptureModal({ onSaved, onSkip }: Props) {
 
         <button
           onClick={onSkip}
-          className="w-full mt-3 text-neutral-500 hover:text-neutral-300 text-sm py-2 transition-colors"
+          className="w-full mt-3 text-stone-500 hover:text-stone-300 text-sm py-2 transition-colors"
         >
           Skip for now — I understand I may lose access if I clear my browser
         </button>

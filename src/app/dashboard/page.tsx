@@ -108,22 +108,22 @@ export default function DashboardPage() {
 
   if (hasProfile === null) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-neutral-500 text-sm">Loading...</div>
+      <div className="min-h-screen bg-stone-950 flex items-center justify-center">
+        <div className="text-stone-500 text-sm">Loading...</div>
       </div>
     );
   }
 
   if (!hasProfile || !storedProfile) {
     return (
-      <div className="min-h-screen bg-black flex flex-col items-center justify-center text-center px-6">
+      <div className="min-h-screen bg-stone-950 flex flex-col items-center justify-center text-center px-6">
         <h2 className="text-2xl font-bold text-white mb-3">No profile found.</h2>
-        <p className="text-neutral-400 mb-8 max-w-sm">
+        <p className="text-stone-400 mb-8 max-w-sm">
           Complete the intake analysis first to unlock your personalized modules.
         </p>
         <Link
           href="/intake"
-          className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-neutral-100 transition-colors"
+          className="bg-amber-400 text-stone-950 px-6 py-3 rounded-full font-semibold hover:bg-amber-300 transition-colors"
         >
           Start Your Analysis
         </Link>
@@ -134,24 +134,24 @@ export default function DashboardPage() {
   const completedCount = MODULE_ORDER.filter(id => moduleStatuses[id] === 'done').length;
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-white">
+    <div className="min-h-screen bg-stone-950 text-white">
       {/* Header */}
-      <div className="border-b border-neutral-800 px-6 py-4">
+      <div className="border-b border-stone-800 px-6 py-4">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <Link href={`/report?id=${storedProfile.reportId}`} className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors text-sm">
+          <Link href={`/report?id=${storedProfile.reportId}`} className="flex items-center gap-2 text-stone-400 hover:text-white transition-colors text-sm">
             <ArrowLeft size={16} /> Your Report
           </Link>
-          <div className="text-xs text-neutral-500 font-mono">
+          <div className="text-xs text-stone-500 font-mono">
             {completedCount} / {MODULE_ORDER.length} modules unlocked
           </div>
         </div>
       </div>
 
       {/* Hero */}
-      <div className="max-w-5xl mx-auto px-6 py-16 border-b border-neutral-800">
-        <div className="text-xs font-mono text-neutral-500 mb-4 uppercase tracking-widest">Your Dashboard</div>
+      <div className="max-w-5xl mx-auto px-6 py-16 border-b border-stone-800">
+        <div className="text-xs font-mono text-stone-500 mb-4 uppercase tracking-widest">Your Dashboard</div>
         <h1 className="text-4xl font-bold mb-4">Twelve more lenses.</h1>
-        <p className="text-neutral-400 max-w-xl text-lg">
+        <p className="text-stone-400 max-w-xl text-lg">
           Each module runs the same profile data through a different analytical frame. No new questions needed — just a new angle on who you are.
         </p>
       </div>
@@ -194,16 +194,16 @@ function ModuleCard({ def, status, onGenerate, onView }: ModuleCardProps) {
   return (
     <div className={`
       rounded-2xl border p-6 flex flex-col gap-4 transition-all
-      ${isDone ? 'border-neutral-600 bg-neutral-900' : 'border-neutral-800 bg-neutral-900/50'}
+      ${isDone ? 'border-stone-600 bg-stone-900' : 'border-stone-800 bg-stone-900/50'}
     `}>
       <div className="flex items-start justify-between">
         <span className="text-2xl">{def.icon}</span>
-        {isDone && <CheckCircle size={16} className="text-neutral-400 mt-1" />}
+        {isDone && <CheckCircle size={16} className="text-amber-500 mt-1" />}
       </div>
 
       <div>
         <h3 className="text-white font-semibold mb-1">{def.name}</h3>
-        <p className="text-neutral-500 text-sm leading-relaxed">{def.tagline}</p>
+        <p className="text-stone-500 text-sm leading-relaxed">{def.tagline}</p>
       </div>
 
       <div className="mt-auto">
@@ -213,18 +213,18 @@ function ModuleCard({ def, status, onGenerate, onView }: ModuleCardProps) {
         {isDone ? (
           <button
             onClick={onView}
-            className="w-full border border-neutral-600 text-neutral-300 hover:text-white hover:border-neutral-400 rounded-xl py-2 text-sm transition-colors"
+            className="w-full border border-stone-600 text-stone-300 hover:text-white hover:border-stone-400 rounded-xl py-2 text-sm transition-colors"
           >
             View Report
           </button>
         ) : isGenerating ? (
-          <button disabled className="w-full bg-neutral-800 text-neutral-500 rounded-xl py-2 text-sm flex items-center justify-center gap-2">
+          <button disabled className="w-full bg-stone-800 text-stone-500 rounded-xl py-2 text-sm flex items-center justify-center gap-2">
             <Loader2 size={14} className="animate-spin" /> Generating...
           </button>
         ) : (
           <button
             onClick={onGenerate}
-            className="w-full bg-white text-black hover:bg-neutral-100 rounded-xl py-2 text-sm font-semibold transition-colors"
+            className="w-full bg-amber-400 text-stone-950 hover:bg-amber-300 rounded-xl py-2 text-sm font-semibold transition-colors"
           >
             Generate {def.estimatedTime}
           </button>
