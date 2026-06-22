@@ -101,7 +101,7 @@ export default function IntakePage() {
         <Loader2 className="animate-spin text-stone-900 mb-6" size={40} />
         <h2 className="text-2xl font-semibold text-stone-900 mb-3">Analyzing your profile...</h2>
         <p className="text-stone-500 max-w-sm">
-          Building your psychological analysis. This takes about 60 seconds.
+          Building your psychological analysis. This only takes a moment.
         </p>
       </div>
     );
