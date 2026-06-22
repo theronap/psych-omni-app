@@ -90,7 +90,7 @@ export function ReportDisplay({ content, createdAt, onGoToDashboard, emailSaved 
 
       <div className="border-t border-stone-200 px-6 py-16">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="text-xs font-mono text-stone-400 mb-4 uppercase tracking-widest">What's Next</div>
+          <div className="text-xs font-mono text-stone-400 mb-4 uppercase tracking-widest">What&apos;s Next</div>
           <h3 className="font-serif text-3xl text-stone-900 mb-3">12 more lenses on <span className="italic text-stone-400">who you are.</span></h3>
           <p className="text-stone-500 mb-8 max-w-md mx-auto">
             Your Shadow Self, Cognitive Bias Scanner, Emotional Trigger Blueprint, and 9 more — all generated instantly from the same profile.

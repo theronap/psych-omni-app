@@ -5,7 +5,6 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { MODULE_DEFINITIONS } from '@/lib/modules/definitions';
-import { ReportDisplay } from '@/components/report/ReportDisplay';
 
 interface StoredModuleReport {
   moduleId: string;
@@ -22,6 +21,7 @@ export default function ModuleReportPage() {
 
   const def = MODULE_DEFINITIONS[moduleId];
 
+  /* eslint-disable react-hooks/set-state-in-effect -- one-time hydration of browser-only localStorage on mount; must run in an effect to avoid an SSR hydration mismatch */
   useEffect(() => {
     const raw = localStorage.getItem(`module_${moduleId}`);
     if (!raw) { setError(true); return; }
@@ -31,6 +31,7 @@ export default function ModuleReportPage() {
       setError(true);
     }
   }, [moduleId]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   if (!def) {
     return (
@@ -48,7 +49,7 @@ export default function ModuleReportPage() {
       <div className="min-h-screen bg-stone-50 flex flex-col items-center justify-center text-center px-6">
         <div className="text-3xl mb-4">{def.icon}</div>
         <h2 className="text-2xl font-bold text-stone-900 mb-3">{def.name}</h2>
-        <p className="text-stone-500 mb-8 max-w-sm">This module hasn't been generated yet.</p>
+        <p className="text-stone-500 mb-8 max-w-sm">This module hasn&apos;t been generated yet.</p>
         <button
           onClick={() => router.push('/dashboard')}
           className="bg-accent text-white px-6 py-3 rounded-full font-semibold hover:bg-accent-hover transition-colors"

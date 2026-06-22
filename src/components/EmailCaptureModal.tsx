@@ -39,9 +39,9 @@ export default function EmailCaptureModal({ onSaved, onSkip }: Props) {
       <div className="bg-white border border-stone-200 rounded-2xl max-w-md w-full p-8 shadow-xl">
         <div className="mb-6">
           <div className="text-xs uppercase tracking-widest text-stone-400 mb-2">Save Your Report</div>
-          <h2 className="text-2xl font-bold text-stone-900 mb-3">Don't lose this.</h2>
+          <h2 className="text-2xl font-bold text-stone-900 mb-3">Don&apos;t lose this.</h2>
           <p className="text-stone-500 leading-relaxed">
-            Your report exists on this device right now. Enter your email and we'll make sure you can access it from anywhere — and notify you when your 12 add-on modules are ready.
+            Your report exists on this device right now. Enter your email and we&apos;ll make sure you can access it from anywhere — and notify you when your 12 add-on modules are ready.
           </p>
         </div>
 

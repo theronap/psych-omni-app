@@ -1,4 +1,4 @@
-import { pgTable, text, jsonb, timestamp, uuid, real } from 'drizzle-orm/pg-core';
+import { pgTable, text, jsonb, timestamp, uuid } from 'drizzle-orm/pg-core';
 
 // Anonymous sessions — created when intake starts, persists forever via cookie
 export const sessions = pgTable('sessions', {

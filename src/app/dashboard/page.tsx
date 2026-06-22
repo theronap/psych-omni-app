@@ -22,6 +22,7 @@ export default function DashboardPage() {
   const [moduleStatuses, setModuleStatuses] = useState<Record<string, ModuleStatus>>({});
   const [hasProfile, setHasProfile] = useState<boolean | null>(null);
 
+  /* eslint-disable react-hooks/set-state-in-effect -- one-time hydration of browser-only localStorage on mount; must run in an effect to avoid an SSR hydration mismatch */
   useEffect(() => {
     const raw = localStorage.getItem('current_profile');
     if (!raw) { setHasProfile(false); return; }
@@ -38,6 +39,7 @@ export default function DashboardPage() {
       setHasProfile(false);
     }
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   function updateStatus(moduleId: string, status: ModuleStatus) {
     setModuleStatuses(prev => {
