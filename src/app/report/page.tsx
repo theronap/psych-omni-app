@@ -22,6 +22,7 @@ function ReportContent() {
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [emailSaved, setEmailSaved] = useState(false);
 
+  /* eslint-disable react-hooks/set-state-in-effect -- one-time hydration of browser-only localStorage on mount; must run in an effect to avoid an SSR hydration mismatch */
   useEffect(() => {
     if (!id) { setError(true); return; }
     const stored = localStorage.getItem(`report_${id}`);
@@ -37,6 +38,7 @@ function ReportContent() {
       setError(true);
     }
   }, [id]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   function handleEmailSaved(email: string) {
     setEmailSaved(true);

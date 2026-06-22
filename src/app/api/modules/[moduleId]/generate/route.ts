@@ -10,9 +10,8 @@ export async function POST(
   { params }: { params: Promise<{ moduleId: string }> }
 ) {
   const { moduleId } = await params;
-  const { profile, openEnded, profileId }: {
+  const { profile, profileId }: {
     profile: ProfileDimensions;
-    openEnded: Record<string, string>;
     profileId?: string;
   } = await req.json();
 
