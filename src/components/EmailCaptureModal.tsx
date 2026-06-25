@@ -11,10 +11,13 @@ export default function EmailCaptureModal({ onSaved, onSkip }: Props) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'saving' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  // 'invalid' = user input problem (red); 'unavailable' = cloud unreachable (calm).
+  const [tone, setTone] = useState<'invalid' | 'unavailable'>('invalid');
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email.includes('@')) {
+      setTone('invalid');
       setErrorMsg('Enter a valid email address.');
       return;
     }
@@ -29,8 +32,12 @@ export default function EmailCaptureModal({ onSaved, onSkip }: Props) {
       if (!res.ok) throw new Error('Failed');
       onSaved(email);
     } catch {
+      // Cloud save failed (e.g. DB unreachable). Don't alarm the user — their
+      // report is safe locally. Keep the email so it isn't lost on retry/return.
+      try { localStorage.setItem('pending_email', email); } catch {}
       setStatus('error');
-      setErrorMsg('Something went wrong. Your report is still saved on this device.');
+      setTone('unavailable');
+      setErrorMsg('We can’t reach the cloud right now — your report and email are saved on this device. Try again in a moment, or skip and come back later.');
     }
   }
 
@@ -54,7 +61,11 @@ export default function EmailCaptureModal({ onSaved, onSkip }: Props) {
             className="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-stone-900 placeholder-stone-400 focus:outline-none focus:border-accent transition-colors"
             autoFocus
           />
-          {errorMsg && <p className="text-red-500 text-sm">{errorMsg}</p>}
+          {errorMsg && (
+            <p className={`text-sm ${tone === 'invalid' ? 'text-red-500' : 'text-amber-600'}`}>
+              {errorMsg}
+            </p>
+          )}
           <button
             type="submit"
             disabled={status === 'saving'}
