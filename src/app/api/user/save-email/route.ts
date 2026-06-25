@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { getSessionId, linkEmail } from '@/lib/session';
+import { getOrCreateSession, linkEmail } from '@/lib/session';
 
 export async function POST(req: NextRequest) {
   const { email }: { email: string } = await req.json();
@@ -9,13 +9,16 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const sessionId = await getSessionId();
-    if (!sessionId) {
-      return Response.json({ error: 'No active session' }, { status: 400 });
-    }
+    // Lazily create a session if one doesn't exist yet (e.g. intake degraded
+    // to localStorage-only earlier), so a missing cookie isn't a hard failure.
+    const sessionId = await getOrCreateSession();
     await linkEmail(sessionId, email.toLowerCase().trim());
     return Response.json({ ok: true });
-  } catch {
-    return Response.json({ error: 'Failed to save email' }, { status: 500 });
+  } catch (err) {
+    // DB unreachable — the only remaining failure mode. Log it (so a future
+    // outage is visible in Vercel logs instead of silent), then let the client
+    // keep the email locally and show a calm "cloud unavailable" message.
+    console.error('[save-email] failed to persist email:', err);
+    return Response.json({ error: 'Cloud storage unavailable' }, { status: 503 });
   }
 }
